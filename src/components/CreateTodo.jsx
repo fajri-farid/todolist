@@ -7,13 +7,12 @@ import toast from "react-hot-toast";
 export const CreateTodo = () => {
   const router = useRouter();
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleCreateTodo() {
     // Validasi input
-    if (!title.trim() || !content.trim()) {
-      toast.error("Please fill in both title and content.");
+    if (!title.trim()) {
+      toast.error("Please fill the title ");
       return;
     }
 
@@ -24,7 +23,7 @@ export const CreateTodo = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify([{ title, content, isdone: "false" }]),
+        body: JSON.stringify([{ title, isdone: "false" }]),
       });
 
       if (!res.ok) {
@@ -34,7 +33,6 @@ export const CreateTodo = () => {
       router.refresh();
       toast.success("Todo berhasil dibuat!");
       setTitle("");
-      setContent("");
     } catch (error) {
       console.error(error);
       toast.error("This didn't work.");
@@ -51,11 +49,6 @@ export const CreateTodo = () => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <textarea
-        placeholder="Content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      ></textarea>
       <button disabled={loading} onClick={handleCreateTodo}>
         Create
       </button>
