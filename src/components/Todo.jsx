@@ -76,7 +76,7 @@ export const Todo = ({ item }) => {
 
   return (
     <div className="flex w-full items-center justify-between border-b border-gray-300 p-3">
-      <h3 className={`font-bold font-lg ${isDone ? "line-through" : ""}`}>
+      <h3 className={`font-bold font-lg ${isDone ? "line-through font-light" : ""}`}>
         {item.title}
       </h3>
       <div className="flex gap-2">
