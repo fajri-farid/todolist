@@ -44,7 +44,7 @@ export const CreateTodo = () => {
   return (
     <main className="space-y-2">
       <h3>CreateTodo</h3>
-      <input
+      <input className="input"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
