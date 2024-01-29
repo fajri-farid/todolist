@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  
-
   button {
     @apply bg-indigo-600 px-4 py-2 rounded-lg text-white disabled:opacity-40;
   }

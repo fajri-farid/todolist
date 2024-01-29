@@ -42,17 +42,23 @@ export const CreateTodo = () => {
   }
 
   return (
-    <main className="space-y-2">
-      <h3>CreateTodo</h3>
-      <input className="input"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <button disabled={loading} onClick={handleCreateTodo}>
-        Create
-      </button>
+    <main className="md:p-2 lg:p-4">
+      <h3 className="bg-indigo-950 text-white text-center text-xl p-2 md:mt-10 md:mb-2">CreateTodo</h3>
+      <div className="flex flex-col space-y-4 md:space-y-6 lg:space-y-8 p-4">
+        <input
+          className="input border-2 border-indigo-950 p-2 md:p-3 lg:p-4"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <button
+          className="bg-indigo-950 text-white py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8"
+          disabled={loading}
+          onClick={handleCreateTodo}
+        >
+          Create
+        </button>
+      </div>
     </main>
   );
 };
-
