@@ -29,7 +29,6 @@ export const Todo = ({ item, categories }) => {
   }
 
   async function handleUpdate() {
-
     const res = await fetch("https://v1.appbackend.io/v1/rows/iupF0TppPECf", {
       method: "PUT",
       headers: {
@@ -41,7 +40,7 @@ export const Todo = ({ item, categories }) => {
         isdone: isDone.toString(),
         categories: selectedCategory,
       }),
-    });  
+    });
 
     const data = await res.json();
     console.log(data);
@@ -111,6 +110,28 @@ export const Todo = ({ item, categories }) => {
     );
   }
 
+  const handleCheckboxToggle = async () => {
+    setIsDone(!isDone);
+
+    // Add an update request here when the checkbox is toggled
+    const res = await fetch("https://v1.appbackend.io/v1/rows/iupF0TppPECf", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _id: item._id,
+        title: item.title, // Keep the existing title
+        isdone: (!isDone).toString(),
+        categories: selectedCategory,
+      }),
+    });
+
+    const data = await res.json();
+    console.log(data);
+    router.refresh();
+  };
+
   const getCategoryColor = (category) => {
     if (!category) {
       return "";
@@ -132,6 +153,15 @@ export const Todo = ({ item, categories }) => {
   return (
     <div className="flex w-full items-center justify-between border-b border-gray-300 p-3">
       <div>
+        <label className="flex items-center">
+          <input
+            type="checkbox"
+            checked={isDone}
+            onChange={handleCheckboxToggle}
+            className="mr-2"
+          />
+          <span className="text-sm font-medium text-gray-600">Is Done</span>
+        </label>
         <h3
           className={`font-bold font- md:text-xl mb-3 ${
             isDone ? "line-through font-light" : ""
