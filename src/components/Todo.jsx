@@ -9,7 +9,10 @@ export const Todo = ({ item, categories }) => {
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(item.title);
   const [isDone, setIsDone] = useState(item.isdone === "true");
-  const [selectedCategory, setSelectedCategory] = useState(item.categories);
+  const [selectedCategory, setSelectedCategory] = useState(
+    item.categories || ""
+  );
+  const [dataState, setDataState] = useState([]);
 
   async function handleDelete() {
     const res = await fetch("https://v1.appbackend.io/v1/rows/iupF0TppPECf", {
@@ -26,6 +29,13 @@ export const Todo = ({ item, categories }) => {
   }
 
   async function handleUpdate() {
+    const updatedItem = {
+    _id: item._id,
+    title,
+    isdone: isDone.toString(),
+    categories: selectedCategory,
+  };
+
     const res = await fetch("https://v1.appbackend.io/v1/rows/iupF0TppPECf", {
       method: "PUT",
       headers: {
@@ -38,6 +48,22 @@ export const Todo = ({ item, categories }) => {
         categories: selectedCategory,
       }),
     });
+
+    const updatedData = [...dataState];
+    const index = updatedData.findIndex(
+      (existingItem) => existingItem._id === item._id
+    );
+
+    if (index !== -1) {
+      updatedData[index] = updatedItem;
+    }
+
+    // Use unshift to add the updated item at the beginning
+    updatedData.unshift(updatedItem);
+
+    // Update the state with the new array
+    setDataState(updatedData);
+
     const data = await res.json();
     console.log(data);
     router.refresh();
@@ -106,6 +132,9 @@ export const Todo = ({ item, categories }) => {
   }
 
   const getCategoryColor = (category) => {
+    if (!category) {
+      return "";
+    }
     switch (category.toLowerCase()) {
       case "health":
         return "pb-2 pt-2 pl-4 pr-4 bg-red-500 rounded-full w-full text-white";
@@ -124,7 +153,7 @@ export const Todo = ({ item, categories }) => {
     <div className="flex w-full items-center justify-between border-b border-gray-300 p-3">
       <div>
         <h3
-          className={`font-bold font-lg md:text-xl mb-3 ${
+          className={`font-bold font- md:text-xl mb-3 ${
             isDone ? "line-through font-light" : ""
           }`}
         >
