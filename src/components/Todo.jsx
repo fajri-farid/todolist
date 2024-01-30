@@ -108,7 +108,7 @@ export const Todo = ({ item, categories }) => {
       },
       body: JSON.stringify({
         _id: item._id,
-        title: item.title, // Keep the existing title
+        title: item.title,
         isdone: (!isDone).toString(),
         categories: selectedCategory,
       }),

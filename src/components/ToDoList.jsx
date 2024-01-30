@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 export const ToDoList = ({ data }) => {
-  // nge sort list yang done kebawah
   const [todos, setTodos] = useState([]);
 
   const sortedData = data.sort((a, b) => (a.isdone === "true" ? 1 : -1));
