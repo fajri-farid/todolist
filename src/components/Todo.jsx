@@ -86,19 +86,6 @@ export const Todo = ({ item, categories }) => {
           </select>
         </div>
 
-        {/* is done */}
-        <div className="mb-4">
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              checked={isDone}
-              onChange={() => setIsDone(!isDone)}
-              className="mr-2"
-            />
-            <span className="text-sm font-medium text-gray-600">Is Done</span>
-          </label>
-        </div>
-
         {/* update */}
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
@@ -151,31 +138,36 @@ export const Todo = ({ item, categories }) => {
   };
 
   return (
-    <div className="flex w-full items-center justify-between border-b border-gray-300 p-3">
-      <div>
-        <label className="flex items-center">
-          <input
-            type="checkbox"
-            checked={isDone}
-            onChange={handleCheckboxToggle}
-            className="mr-2"
-          />
-          <span className="text-sm font-medium text-gray-600">Is Done</span>
-        </label>
-        <h3
-          className={`font-bold font- md:text-xl mb-3 ${
-            isDone ? "line-through font-light" : ""
-          }`}
-        >
-          {item.title}
-        </h3>
-        <span className={`${getCategoryColor(selectedCategory)}`}>
-          {selectedCategory}
-        </span>
-      </div>
-      <div className="flex gap-2">
-        <button onClick={handleDelete}>Delete</button>
-        <button onClick={() => setEditMode(true)}>Edit</button>
+    <div className="flex items-center p-4 md-p-0">
+      <input
+          type="checkbox"
+          checked={isDone}
+          onChange={handleCheckboxToggle}
+          className="mr-2 h-6 w-6 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+        />
+      <div className="flex w-full items-center justify-between border-b border-gray-300 p-3">
+        <div className="flex items-center w-full">
+          <div className="flex-1">
+            <h3
+              className={`font-bold text-md md:text-lg mb-2 ${
+                isDone ? "line-through font-light" : ""
+              }`}
+            >
+              {item.title}
+            </h3>
+            <span className={`${getCategoryColor(selectedCategory)}`}>
+              {selectedCategory || "No Category"}
+            </span>
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <button onClick={handleDelete} className="btn-error">
+            Delete
+          </button>
+          <button onClick={() => setEditMode(true)} className="btn-secondary">
+            Edit
+          </button>
+        </div>
       </div>
     </div>
   );

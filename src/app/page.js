@@ -14,7 +14,7 @@ export default async function Home() {
   const { data } = await getData();
   console.log(data);
   return (
-    <main className="max-w-xl m-auto space-y-2">
+    <main className="max-w-xl md:max-w-2xl m-auto space-y-2">
       <CreateTodo />
       <DateComponent />
       <ToDoList data={data} />

@@ -48,7 +48,7 @@ export const CreateTodo = () => {
       </h3>
       <div className="flex flex-col p-4 space-y-4 md:space-y-6 lg:space-y-8">
         <input
-          className="input border-2 border-indigo-950 p-2 md:p-3 lg:p-4"
+          className="input border-2 border-indigo-950 p-4"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
