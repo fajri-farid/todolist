@@ -42,9 +42,6 @@ export const CreateTodo = () => {
 
   return (
     <main className="md:p-2 lg:p-4">
-      <h3 className="bg-indigo-950 text-white text-center text-xl p-2 mb-2 md:mt-10">
-        Create Todo
-      </h3>
       <div className="flex flex-col p-4 space-y-4 md:space-y-6 lg:space-y-8">
         <input
           className="input border-2 border-indigo-950 p-4"
