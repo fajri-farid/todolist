@@ -29,12 +29,6 @@ export const Todo = ({ item, categories }) => {
   }
 
   async function handleUpdate() {
-    const updatedItem = {
-    _id: item._id,
-    title,
-    isdone: isDone.toString(),
-    categories: selectedCategory,
-  };
 
     const res = await fetch("https://v1.appbackend.io/v1/rows/iupF0TppPECf", {
       method: "PUT",
@@ -47,22 +41,7 @@ export const Todo = ({ item, categories }) => {
         isdone: isDone.toString(),
         categories: selectedCategory,
       }),
-    });
-
-    const updatedData = [...dataState];
-    const index = updatedData.findIndex(
-      (existingItem) => existingItem._id === item._id
-    );
-
-    if (index !== -1) {
-      updatedData[index] = updatedItem;
-    }
-
-    // Use unshift to add the updated item at the beginning
-    updatedData.unshift(updatedItem);
-
-    // Update the state with the new array
-    setDataState(updatedData);
+    });  
 
     const data = await res.json();
     console.log(data);
