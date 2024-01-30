@@ -9,9 +9,7 @@ export const Todo = ({ item, categories }) => {
   const [editMode, setEditMode] = useState(false);
   const [title, setTitle] = useState(item.title);
   const [isDone, setIsDone] = useState(item.isdone === "true");
-  const [selectedCategory, setSelectedCategory] = useState(
-    item.categories || ""
-  );
+  const [selectedCategory, setSelectedCategory] = useState(item.categories);
 
   async function handleDelete() {
     const res = await fetch("https://v1.appbackend.io/v1/rows/iupF0TppPECf", {
@@ -52,6 +50,7 @@ export const Todo = ({ item, categories }) => {
     return (
       <main className="space-y-2 bg-gray-100 p-4 rounded-md">
         <h3 className="text-xl font-bold mb-4">Edit Todo</h3>
+        {/* title */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">
             Title
@@ -63,6 +62,26 @@ export const Todo = ({ item, categories }) => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
+
+        {/* categories */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-600">
+            Category
+          </label>
+          <select
+            className="border p-2 w-full text-base"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* is done */}
         <div className="mb-4">
           <label className="flex items-center">
             <input
@@ -74,22 +93,8 @@ export const Todo = ({ item, categories }) => {
             <span className="text-sm font-medium text-gray-600">Is Done</span>
           </label>
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-600">
-            Category
-          </label>
-          <select
-            className="border p-2 w-full"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-        </div>
+
+        {/* update */}
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
           onClick={handleUpdate}
@@ -111,7 +116,7 @@ export const Todo = ({ item, categories }) => {
       case "daily":
         return "bg-teal-500 pb-2 pt-2 pl-4 pr-4 rounded-full w-full text-white";
       default:
-        return "bg-gray-500 pb-2 pt-2 pl-4 pr-4 rounded-full w-full text-white"; // Default color for unknown categories
+        return "";
     }
   };
 
@@ -119,7 +124,7 @@ export const Todo = ({ item, categories }) => {
     <div className="flex w-full items-center justify-between border-b border-gray-300 p-3">
       <div>
         <h3
-          className={`font-bold font-lg mb-3 ${
+          className={`font-bold font-lg md:text-xl mb-3 ${
             isDone ? "line-through font-light" : ""
           }`}
         >
