@@ -1,4 +1,5 @@
 import { CreateTodo } from "@/components/CreateTodo";
+import { DateComponent } from "@/components/DateComponents";
 import { ToDoList } from "@/components/ToDoList";
 
 export const dynamic = "force-dynamic";
@@ -15,7 +16,7 @@ export default async function Home() {
   return (
     <main className="max-w-xl m-auto space-y-2">
       <CreateTodo />
-
+      <DateComponent />
       <ToDoList data={data} />
     </main>
   );
