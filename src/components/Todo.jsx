@@ -12,8 +12,7 @@ export const Todo = ({ item, categories }) => {
   const [selectedCategory, setSelectedCategory] = useState(
     item.categories || ""
   );
-  const [dataState, setDataState] = useState([]);
-
+  
   async function handleDelete() {
     const res = await fetch("https://v1.appbackend.io/v1/rows/iupF0TppPECf", {
       method: "DELETE",
