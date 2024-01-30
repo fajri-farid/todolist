@@ -23,7 +23,7 @@ export const CreateTodo = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify([{ title, isdone: "false" }]),
+        body: JSON.stringify([{ title, isdone: "false", "categories":"" }]),
       });
 
       if (!res.ok) {

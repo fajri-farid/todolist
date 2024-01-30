@@ -78,6 +78,7 @@ export const Todo = ({ item, categories }) => {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
+            <option value="">None</option>
             {categories.map((category) => (
               <option key={category} value={category}>
                 {category}
