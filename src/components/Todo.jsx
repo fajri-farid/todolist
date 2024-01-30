@@ -66,7 +66,7 @@ export const Todo = ({ item, categories }) => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-
+  
         {/* categories */}
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">
@@ -85,14 +85,22 @@ export const Todo = ({ item, categories }) => {
             ))}
           </select>
         </div>
-
-        {/* update */}
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          onClick={handleUpdate}
-        >
-          Update
-        </button>
+  
+        {/* update and cancel */}
+        <div className="flex gap-2">
+          <button
+            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+            onClick={handleUpdate}
+          >
+            Update
+          </button>
+          <button
+            className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
+            onClick={() => setEditMode(false)}
+          >
+            Cancel
+          </button>
+        </div>
       </main>
     );
   }
@@ -125,13 +133,13 @@ export const Todo = ({ item, categories }) => {
     }
     switch (category.toLowerCase()) {
       case "health":
-        return "pb-2 pt-2 pl-4 pr-4 bg-red-500 rounded-full w-full text-white";
+        return "text-sm pb-1 pt-1 pl-3 pr-3 bg-red-500 rounded-full w-full text-white";
       case "work":
-        return "bg-blue-500 pb-2 pt-2 pl-4 pr-4 rounded-full w-full text-white";
+        return "bg-blue-500 text-sm pb-1 pt-1 pl-3 pr-3 rounded-full w-full text-white";
       case "school":
-        return "bg-green-500 pb-2 pt-2 pl-4 pr-4 rounded-full w-full text-white";
+        return "bg-green-500 text-sm pb-1 pt-1 pl-3 pr-3 rounded-full w-full text-white";
       case "daily":
-        return "bg-teal-500 pb-2 pt-2 pl-4 pr-4 rounded-full w-full text-white";
+        return "bg-teal-500 text-sm pb-1 pt-1 pl-3 pr-3 rounded-full w-full text-white";
       default:
         return "";
     }
