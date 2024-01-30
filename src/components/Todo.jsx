@@ -156,7 +156,7 @@ export const Todo = ({ item, categories }) => {
               {item.title}
             </h3>
             <span className={`${getCategoryColor(selectedCategory)}`}>
-              {selectedCategory || "No Category"}
+              {selectedCategory || ""}
             </span>
           </div>
         </div>
